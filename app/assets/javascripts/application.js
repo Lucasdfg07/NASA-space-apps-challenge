@@ -18,3 +18,7 @@
 //= require Chart.bundle
 //
 //= require_tree .
+
+$(document).ready(function() {
+    
+});
