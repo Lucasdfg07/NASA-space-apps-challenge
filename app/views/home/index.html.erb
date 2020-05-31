@@ -22,6 +22,13 @@
 
         var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
 
+        google.visualization.events.addListener(chart, 'select', function () {
+            var selection = chart.getSelection();
+            if (selection.length) {
+                alert(data.getValue(selection[0].row, 0));
+            }
+        });
+
         chart.draw(data, options);
       }
 <% end %>
