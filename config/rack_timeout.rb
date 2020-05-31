@@ -1,3 +1,1 @@
-if defined?(Rack::Timeout)
-    Rack::Timeout.timeout = Integer( ENV['RACK_TIMEOUT'] || 12 )
-end
+Rails.application.config.middleware.insert_before Rack::Runtime, Rack::Timeout, service_timeout: 999999999
