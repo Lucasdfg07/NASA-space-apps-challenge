@@ -12,6 +12,7 @@ class PopulateBdService
             cases = data["cases"]
             death = data["deaths"]
             countriesAndTerritories = data["countriesAndTerritories"]
+            geoId = data["geoId"]
 
             @country =  Country.find_or_create_by(
                             dateRep: dateRep, 
@@ -20,7 +21,8 @@ class PopulateBdService
                             year: year, 
                             cases: cases, 
                             deaths: death, 
-                            countriesAndTerritories: countriesAndTerritories)
+                            countriesAndTerritories: countriesAndTerritories,
+                            geoId: geoId)
 
             # render json: data
         end

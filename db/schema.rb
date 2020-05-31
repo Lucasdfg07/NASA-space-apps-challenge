@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2020_05_30_223318) do
     t.string "cases"
     t.string "deaths"
     t.string "countriesAndTerritories"
+    t.string "geoId"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

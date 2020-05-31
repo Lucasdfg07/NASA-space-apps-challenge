@@ -1,3 +1,7 @@
+<h1 class="title">Impacts of Covid-19 Over the Time</h1>
+
+<hr />
+
 <%= javascript_tag do %>
       google.charts.load('current', {
         'packages':['geochart'],
@@ -11,7 +15,10 @@
       function drawRegionsMap() {
         var data = google.visualization.arrayToDataTable(<%= raw cases_array %>);
 
-        var options = {backgroundColor: 'none'};
+        var options = {
+            backgroundColor: 'none',
+            colorAxis: {colors: ['#00853f', 'black', '#e31b23']}
+        };
 
         var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
 

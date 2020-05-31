@@ -8,6 +8,7 @@ class CreateCountries < ActiveRecord::Migration[6.0]
       t.string :cases
       t.string :deaths
       t.string :countriesAndTerritories
+      t.string :geoId
       t.timestamps
     end
   end
