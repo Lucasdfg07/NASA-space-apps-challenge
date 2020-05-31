@@ -14,6 +14,9 @@ gem "bulma-rails", "~> 0.8.2"
 # Use in Service
 gem 'rest-client'
 
+# TimeOut heroku
+gem 'rack-timeout'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.1'
 # Use sqlite3 as the database for Active Record
