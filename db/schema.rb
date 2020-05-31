@@ -16,14 +16,14 @@ ActiveRecord::Schema.define(version: 2020_05_30_223318) do
   enable_extension "plpgsql"
 
   create_table "countries", force: :cascade do |t|
-    t.string "dateRep"
-    t.string "day"
-    t.string "month"
-    t.string "year"
-    t.string "cases"
-    t.string "deaths"
-    t.string "countriesAndTerritories"
-    t.string "geoId"
+    t.string "daterep"
+    t.integer "day"
+    t.integer "month"
+    t.integer "year"
+    t.integer "cases"
+    t.integer "deaths"
+    t.string "countriesandterritories"
+    t.string "geoid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

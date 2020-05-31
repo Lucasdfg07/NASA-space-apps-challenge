@@ -1,18 +1,14 @@
+require 'benchmark'
+
 module HomeHelper
     def cases_array
-        countries_names = Country.group(:id).group(:geoId).pluck(:geoId)
-        
-        hash = [['Country', 'Confirmed cases', 'Total Deaths']]
-        
-        countries_names.each do |country|
-            data_country = Country.where(geoId: country)
-            hash << [
-                     country, 
-                     data_country.map{|data| data.cases.to_i}.sum, 
-                     data_country.map{|data| data.deaths.to_i}.sum
-                    ]
+        @countries = Country.find_by_sql("SELECT geoid, SUM(cases) cases, SUM(deaths) deaths FROM countries GROUP BY geoid")
+
+        @hash = [['Country', 'Confirmed cases', 'Total Deaths']]
+        @countries.each do |t|
+            @hash << [t.geoid, t.cases, t.deaths]
         end
 
-        return hash
+        return @hash
     end
 end
