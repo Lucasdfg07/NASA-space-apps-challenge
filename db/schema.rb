@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_30_223318) do
+ActiveRecord::Schema.define(version: 2020_05_31_235019) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,32 @@ ActiveRecord::Schema.define(version: 2020_05_30_223318) do
     t.integer "deaths"
     t.string "countriesandterritories"
     t.string "geoid"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "trading_economics", force: :cascade do |t|
+    t.string "country"
+    t.string "economic_category"
+    t.float "last"
+    t.float "previous"
+    t.float "highest"
+    t.float "lowest"
+    t.string "unit"
+    t.string "reference"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "trading_economics_data", force: :cascade do |t|
+    t.string "country"
+    t.string "economic_category"
+    t.float "last"
+    t.float "previous"
+    t.float "highest"
+    t.float "lowest"
+    t.string "unit"
+    t.string "reference"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

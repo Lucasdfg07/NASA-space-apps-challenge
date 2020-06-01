@@ -1,4 +1,4 @@
-<h1 class="title">Impacts of Covid-19 Over the Time</h1>
+<h1 class="title title-app">Impacts of Covid-19 Over the Time</h1>
 
 <hr />
 
@@ -17,15 +17,23 @@
 
         var options = {
             backgroundColor: 'none',
-            colorAxis: {colors: ['#00853f', 'black', '#e31b23']}
+            colorAxis: {colors: ['#FFDEAD', '#e31b23']}
         };
 
         var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
 
+        $('.country-card').hide();
+        $('.close').click(function() {
+          $('.country-card').hide(300);
+        });
+
         google.visualization.events.addListener(chart, 'select', function () {
             var selection = chart.getSelection();
             if (selection.length) {
-                alert(data.getValue(selection[0].row, 0));
+                document.getElementById('country_name').innerHTML = data.getValue(selection[0].row, 0);
+                document.getElementById('confirmed_cases').innerHTML = data.getValue(selection[0].row, 1);
+                document.getElementById('confirmed_deaths').innerHTML = data.getValue(selection[0].row, 2);
+                $('.country-card').show(300);
             }
         });
 
@@ -35,10 +43,63 @@
 
 <section id="regions_div" style="width: 1000px; height: 500px;"></section>
 
-<section class="test">
-      <section class="card">
-        <secction class="card-header">
-          teste
+<section class="columns">
+  <section class="column is-3 is-offset-9">
+    <section class="country-card">
+      <section class="card card_all">
+        <section class="close"><%= image_tag 'close' %></section>
+        <secction class="card-content">
+          <section id="country_name" class="title"></section>
+          <hr />
+          
+          <section class="subtitle">Confirmed Cases: <div id="confirmed_cases"></div></section>
+          <br />
+          <section class="subtitle">Confirmed Deaths: <div id="confirmed_deaths"></div></section>
         </section>
       </section>
+    </section>
+  </section>
+</section>
+
+
+<section class="card card_all">
+  <h4 class="title">Prevision of Countries Economy</h4>
+  
+  <hr />
+
+  <%= search_form_for(@q, url: "/", method: :get) do |f| %>
+      <%= f.collection_select :country_eq, TradingEconomic.find_by_sql("SELECT country FROM trading_economics GROUP BY country ORDER BY country"), :country, :country, {}, class: 'input column is-12 select2' %>
+      <br /><br />
+      <%= f.submit 'Search', class: 'column is-4 is-offset-4 button is-dark' %>
+  <% end %>
+
+  <script language="javascript">
+    $( ".select2" ).select2();
+  </script> 
+
+  <hr />
+
+  <section class="columns is-multiline">
+    <% @countries_economy_data.each do |economy_data| %>
+      <section class="card margin column is-3">
+        <section class="card-header">
+          <p class="card-header-title">
+            <%= economy_data.country %>
+          </p>
+        </section>
+
+        <section class="card-content">
+          <b>Economic Data</b>: <br /><%= economy_data.economic_category %>
+          <hr />
+          <b>Last</b>:<%= economy_data.last %><br />
+          <b>Previous</b>:<%= economy_data.previous %><br />
+          <b>Highest</b>:<%= economy_data.highest %><br />
+          <b>Lowest</b>:<%= economy_data.lowest %><br />
+          <b>Unit</b>:<%= economy_data.unit %>
+          <hr />
+          <b>Reference</b>:<%= economy_data.reference %>
+        </section>
+      </section>
+    <% end %>
+  </section>
 </section>

@@ -2,6 +2,31 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-.title {
+.title-app {
     color: white;
+}
+
+.card_all {
+    background-color: #f5f5f5b3;
+    border-radius: 10px;
+    padding:20px;
+}
+
+.close {
+    margin-left: 70%;
+    position: absolute;
+}
+
+.country-card {
+    display: absolute;
+    right: 0;
+    margin-top: -400px;
+}
+
+.hidden {
+    display: none;
+}
+
+.margin {
+    margin: 10px 4%;
 }

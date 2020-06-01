@@ -12,13 +12,15 @@
 //
 //= require turbolinks
 //= require rails-ujs
+//= require jquery
+//= require jquery_ujs
 //
 // Geo Chart
 //= require chartkick
 //= require Chart.bundle
 //
+//Select 2
+//= require select2
+//
+//
 //= require_tree .
-
-$(document).ready(function() {
-    
-});

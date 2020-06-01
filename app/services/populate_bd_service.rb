@@ -11,7 +11,7 @@ class PopulateBdService
             year = data["year"]
             cases = data["cases"]
             death = data["deaths"]
-            countriesAndTerritories = data["countriesAndTerritories"]
+            countriesAndTerritories = data["countriesAndTerritories"].gsub("_", " ")
             geoId = data["geoId"]
 
             @country =  Country.find_or_create_by(
