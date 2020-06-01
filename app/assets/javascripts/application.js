@@ -22,5 +22,8 @@
 //Select 2
 //= require select2
 //
+// Morris Graphs
+//= require jquery
+//= require morris
 //
 //= require_tree .

@@ -24,4 +24,22 @@ module HomeHelper
 
         return validate_country
     end
+
+    def monthly_graph(country)
+        (3.months.ago.to_date..Date.today).map do |date| {
+	      created_at: date,
+          deaths: Country.where("date(TO_DATE(countries.daterep, 'DD/MM/YYYY')) = ? AND countries.countriesandterritories = ?", date, country).sum(:deaths),
+          cases: Country.where("date(TO_DATE(countries.daterep, 'DD/MM/YYYY')) = ? AND countries.countriesandterritories = ?", date, country).sum(:cases)
+	    }
+	    end
+    end
+
+    def monthly_graph_general
+        (4.months.ago.to_date..Date.today).map do |date| {
+	      created_at: date,
+          deaths: Country.where("date(TO_DATE(countries.daterep, 'DD/MM/YYYY')) = ?", date).sum(:deaths),
+          cases: Country.where("date(TO_DATE(countries.daterep, 'DD/MM/YYYY')) = ?", date).sum(:cases)
+	    }
+	    end
+    end
 end

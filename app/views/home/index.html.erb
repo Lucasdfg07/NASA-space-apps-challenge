@@ -68,7 +68,7 @@
   <hr />
 
   <%= search_form_for(@q, url: "/", method: :get) do |f| %>
-      <%= f.collection_select :country_eq, TradingEconomic.find_by_sql("SELECT country FROM trading_economics GROUP BY country ORDER BY country"), :country, :country, {}, class: 'input column is-12 select2' %>
+      <%= f.collection_select :country_eq, TradingEconomic.find_by_sql("SELECT country FROM trading_economics GROUP BY country ORDER BY country"), :country, :country, {include_blank: 'Select a Country'}, class: 'input column is-12 select2' %>
       <br /><br />
       <%= f.submit 'Search', class: 'column is-4 is-offset-4 button is-dark' %>
   <% end %>
@@ -78,28 +78,58 @@
   </script> 
 
   <hr />
+  
+  <% if params[:q].present? %>
+    <section class="columns is-multiline">
+      <% @countries_economy_data.each do |economy_data| %>
+        <section class="card margin column is-3">
+          <section class="card-header">
+            <p class="card-header-title">
+              <%= economy_data.country %>
+            </p>
+          </section>
 
-  <section class="columns is-multiline">
-    <% @countries_economy_data.each do |economy_data| %>
-      <section class="card margin column is-3">
-        <section class="card-header">
-          <p class="card-header-title">
-            <%= economy_data.country %>
-          </p>
+          <section class="card-content">
+            <b>Economic Data</b>: <br /><%= economy_data.economic_category %>
+            <hr />
+            <b>Last</b>:<%= economy_data.last %><br />
+            <b>Previous</b>:<%= economy_data.previous %><br />
+            <b>Highest</b>:<%= economy_data.highest %><br />
+            <b>Lowest</b>:<%= economy_data.lowest %><br />
+            <b>Unit</b>:<%= economy_data.unit %>
+            <hr />
+            <b>Reference</b>:<%= economy_data.reference %>
+          </section>
         </section>
+      <% end %>
+    </section>
 
-        <section class="card-content">
-          <b>Economic Data</b>: <br /><%= economy_data.economic_category %>
-          <hr />
-          <b>Last</b>:<%= economy_data.last %><br />
-          <b>Previous</b>:<%= economy_data.previous %><br />
-          <b>Highest</b>:<%= economy_data.highest %><br />
-          <b>Lowest</b>:<%= economy_data.lowest %><br />
-          <b>Unit</b>:<%= economy_data.unit %>
-          <hr />
-          <b>Reference</b>:<%= economy_data.reference %>
-        </section>
-      </section>
-    <% end %>
-  </section>
+    <section class="graph">
+      <%= content_tag :div, "", id: "line_graph", data: {graph: monthly_graph(params[:q][:country_eq])} %>
+    </section>
+  <% else %>
+    Search a Country to see Economic Data
+    <hr />
+    <h3 class="title">World Data</h3>
+
+    <section class="graph">
+      <%= content_tag :div, "", id: "line_graph", data: {graph: monthly_graph_general} %>
+    </section>
+  <% end %>
+
+  <%= javascript_tag do -%>
+    $( document ).on('turbolinks:load', function() {
+      Morris.Line({
+        element: 'line_graph',
+        data: $('#line_graph').data('graph'),
+        xkey: 'created_at',
+        ykeys: ['deaths', 'cases'],
+        labels: ['Number of Deaths','Number of Cases'],
+        lineColors: ['#DC143C', '#007bff'],
+        labelColor: ['#FFF', '#FFF']
+      }).on('click', function(i, row){
+        console.log(i, row);
+      });
+    });
+  <% end -%>
 </section>

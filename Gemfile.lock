@@ -120,6 +120,8 @@ GEM
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.1)
+    morris.js-rails (1.0.1)
+      jquery-rails (>= 1.0.17)
     msgpack (1.3.3)
     netrc (0.11.0)
     nio4r (2.5.2)
@@ -245,6 +247,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.2)
+  morris.js-rails
   pg
   puma (~> 4.1)
   rack-timeout
