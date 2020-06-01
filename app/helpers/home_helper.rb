@@ -28,8 +28,9 @@ module HomeHelper
     def monthly_graph(country)
         (3.months.ago.to_date..Date.today).map do |date| {
 	      created_at: date,
-          deaths: Country.where("date(TO_DATE(countries.daterep, 'DD/MM/YYYY')) = ? AND countries.countriesandterritories = ?", date, country).sum(:deaths),
-          cases: Country.where("date(TO_DATE(countries.daterep, 'DD/MM/YYYY')) = ? AND countries.countriesandterritories = ?", date, country).sum(:cases)
+          deaths: Country.where("date(TO_DATE(countries.daterep, 'DD/MM/YYYY')) = ? AND countries.countriesandterritories = ?", date, country.gsub("United States", "United States of America")).sum(:deaths),
+
+          cases: Country.where("date(TO_DATE(countries.daterep, 'DD/MM/YYYY')) = ? AND countries.countriesandterritories = ?", date, country.gsub("United States", "United States of America")).sum(:cases)
 	    }
 	    end
     end
