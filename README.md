@@ -68,7 +68,7 @@ Here are the technologies used in this project.
 
 * to populate BD with covid-19 data
 >    $ docker-compose run --rm app bundle exec rails c
--    $ CovidPopulationService.new.call
+>    $ CovidPopulationService.new.call
 
 
 ## How to use
