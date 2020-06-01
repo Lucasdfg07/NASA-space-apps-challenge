@@ -36,6 +36,7 @@ Here are the technologies used in this project.
 ## Services Used
 
 * Github
+* Heroku
 
 ## Ruby Gems
 * Rest-Client
@@ -91,6 +92,7 @@ Here are the technologies used in this project.
 
 
 ## Links
+  - Link of deployed application: http://covid-world.herokuapp.com/
   - Repository: https://github.com/Lucasdfg07/NASA-space-apps-challenge
     - In case of sensitive bugs like security vulnerabilities, please contact
       Lucassiqueiraferandes07@gmail.com directly instead of using issue tracker. We value your effort
