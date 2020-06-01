@@ -107,7 +107,7 @@ Here are the technologies used in this project.
   
   * **Amanda Leal**: @slealamanda (https://github.com/slealamanda)
   * **Lucas Diniz**: @lcsdiniz (https://github.com/lcsdiniz)
-  * **Lucas Siqueira**
+  * **Lucas Siqueira**: @lucasdfg07 (https://github.com/Lucasdfg07)
 
   Please follow github and join us!
   Thanks to visiting me and good coding!
